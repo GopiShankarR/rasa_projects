@@ -16,6 +16,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - ciao
 
 - intent: goodbye
   examples: |
@@ -29,6 +30,13 @@ nlu:
     - see you around
     - bye bye
     - see you later
+
+- intent: request_names
+  examples: |
+    - i want to give you my name
+    - give name
+    - you need to know my name
+    - do you know my name?
 
 - intent: affirm
   examples: |

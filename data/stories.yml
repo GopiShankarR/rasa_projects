@@ -2,6 +2,23 @@ version: "3.1"
 
 stories:
 
+- story: interactive story
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: name_field
+  - slot_was_set:
+    - name_field: Vince
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_store_name
+  - action: utter_greet_with_name
+
 - story: happy path
   steps:
   - intent: greet
@@ -27,4 +44,4 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: deny
-  - action: utter_goodbye
+  - action: utter_sad_message

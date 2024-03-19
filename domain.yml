@@ -2,6 +2,7 @@ version: "3.1"
 
 intents:
   - greet
+  - request_names
   - goodbye
   - affirm
   - deny
@@ -9,9 +10,31 @@ intents:
   - mood_unhappy
   - bot_challenge
 
+forms:
+  name_form:
+    required_slots:
+      - name_field
+
+slots:
+  name_field:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: name_form
+          requested_slot: name_field
+
+
 responses:
+  utter_ask_name:
+  - text: "Thank you for asking! What's your name?"
+
+  utter_greet_with_name:
+  - text: "I will remember your name {name_field}"
+
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hello, how are you?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -28,6 +51,17 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_sad_message:
+  - text: "Don't worry, things will be fine."
+
+  utter_store_name:
+  - text: "Thanks!"
+
+actions:
+- utter_greet
+- utter_store_name
+- utter_greet_with_name
 
 session_config:
   session_expiration_time: 60
